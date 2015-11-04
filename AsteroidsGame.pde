@@ -1,15 +1,65 @@
-//your variable declarations here
+SpaceShip ship; 
 public void setup() 
 {
-  //your code here
+  size(400,400);
+  ship = new SpaceShip();
 }
 public void draw() 
 {
-  //your code here
+  background(0,0,0);
+  ship.move();
+  ship.show();
 }
-class SpaceShip //extends Floater  
+public void keyPressed()
+{
+  if(key== 'k' || key== 'K')
+  {
+    ship.setX((int)Math.random()*400);
+    ship.setY((int)Math.random()*400);
+  }
+  if(key== 'w' || key== 'W')
+  {
+    ship.accelerate(.2);
+  }
+  if(key== 'a' || key== 'A')
+  {
+    ship.rotate(-6);
+  }
+  if(key== 'd' || key== 'D')
+  {
+    ship.rotate(6);
+  }
+  if(key== 's' || key=='S')
+  {
+    ship.accelerate(-.2);
+  }
+}
+class SpaceShip extends Floater  
 {   
-    //your code here
+  public SpaceShip()
+  {
+    corners = 17;
+    int[] xC = {-1,6,6,4,15,15,9,9,7,8,7,7,-1,-6,-6,-7,-7};
+    int[] yC = {-11,-11,-8,-7,-7,-4,-4,-1,0,3,4,7,7,3,-1,-1,-5};
+    xCorners = xC;
+    yCorners = yC;
+    myColor= color(255,255,255);
+    myCenterX=200;
+    myCenterY=200;
+    myDirectionX=0;
+    myDirectionY=0;
+    myPointDirection=0;
+  }
+    public void setX(int x) {myCenterX=(double)x;}
+    public int getX() {return (int)myCenterX;}   
+    public void setY(int y) {myCenterY=(double)y;}   
+    public int getY() {return (int)myCenterY;}
+    public void setDirectionX(double x) {x = myDirectionX;}
+    public double getDirectionX() {return myDirectionX;}    
+    public void setDirectionY(double y) {y=myDirectionY;}
+    public double getDirectionY() {return myDirectionY;}
+    public void setPointDirection(int degrees) {myPointDirection=degrees;}
+    public double getPointDirection() {return myPointDirection;}
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
@@ -20,15 +70,15 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   protected double myCenterX, myCenterY; //holds center coordinates   
   protected double myDirectionX, myDirectionY; //holds x and y coordinates of the vector for direction of travel   
   protected double myPointDirection; //holds current direction the ship is pointing in degrees    
-  abstract public void setX(int x);  
+  abstract public void setX(int x); 
   abstract public int getX();   
   abstract public void setY(int y);   
-  abstract public int getY();   
-  abstract public void setDirectionX(double x);   
-  abstract public double getDirectionX();   
-  abstract public void setDirectionY(double y);   
-  abstract public double getDirectionY();   
-  abstract public void setPointDirection(int degrees);   
+  abstract public int getY(); 
+  abstract public void setDirectionX(double x); 
+  abstract public double getDirectionX();    
+  abstract public void setDirectionY(double y); 
+  abstract public double getDirectionY();    
+  abstract public void setPointDirection(int degrees);
   abstract public double getPointDirection(); 
 
   //Accelerates the floater in the direction it is pointing (myPointDirection)   
@@ -69,7 +119,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
       myCenterY = height;    
     }   
   }   
-  public void show ()  //Draws the floater at the current position  
+  public void show ()     //draws the floater at the current position 
   {             
     fill(myColor);   
     stroke(myColor);    
