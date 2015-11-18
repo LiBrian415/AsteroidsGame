@@ -1,6 +1,6 @@
 SpaceShip ship;
 Star [] star = new Star [200]; 
-Asteroid [] aster = new Asteroid[1];
+Asteroid [] aster = new Asteroid[20];
 public void setup() 
 {
   size(600,600);
@@ -23,6 +23,7 @@ public void draw()
   }
   for(int i =0; i< aster.length; i++)
   {
+    aster[i].move();
     aster[i].show();
   }
   ship.move();
@@ -128,7 +129,7 @@ class Asteroid extends Floater
   private int rotSpeed;
   public Asteroid()
   {
-    rotSpeed=(int)(Math.random()*4-2);
+    rotSpeed=(int)(Math.random()*360);
     corners = 4;
     int xS[]={-10,-10,10,10};
     int yS[]={-10,10,10,-10};
