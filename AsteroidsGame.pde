@@ -129,10 +129,10 @@ class Asteroid extends Floater
   private int rotSpeed;
   public Asteroid()
   {
-    rotSpeed=(int)(Math.random()*360);
-    corners = 4;
-    int xS[]={-10,-10,10,10};
-    int yS[]={-10,10,10,-10};
+    rotSpeed=(int)(Math.random()*10);
+    corners = 14;
+    int xS[]={-8,-8,-6,-6,2,4,7,10,10,9,4,-3,-4,-5};
+    int yS[]={-2,4,7,8,9,9,7,3,-3,-3,-8,-7,-5,-5};
     xCorners=xS;
     yCorners=yS;
     myColor= color(255,255,255);
