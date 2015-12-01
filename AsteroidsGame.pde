@@ -1,19 +1,20 @@
 SpaceShip ship;
-Star [] star = new Star [200]; 
-Asteroid [] aster = new Asteroid[20];
+Star [] star = new Star [100]; 
+ArrayList <Asteroid> List;
 public void setup() 
 {
   size(600,600);
   ship = new SpaceShip();
-  for (int i=0; i<star.length; i++)
+  for(int i=0; i<star.length; i++)
   {
     star[i] = new Star();
   }
-  for (int i=0; i<aster.length; i++)
+  List = new ArrayList <Asteroid>();
+  for(int i=0; i<=20;i++)
   {
-    aster[i] = new Asteroid();
+    List.add(new Asteroid());
   }
-}
+} 
 public void draw() 
 {
   background(0,0,0);
@@ -21,13 +22,16 @@ public void draw()
   {
     star[i].show();
   }
-  for(int i =0; i< aster.length; i++)
+  for(int i=0; i<List.size();i++)
   {
-    aster[i].move();
-    aster[i].show();
+    List.get(i).show();
+    List.get(i).move();
   }
   ship.move();
   ship.show();
+  for(int i=0; i<List.size();i++)
+    if(dist(ship.getX(),ship.getY(),List.get(i).getX(),List.get(i).getY())<20)
+      List.remove(List.get(i));
 }
 public void keyPressed()
 {
@@ -38,7 +42,6 @@ public void keyPressed()
     ship.setPointDirection((int)(Math.random()*360));
     ship.setDirectionX(0);
     ship.setDirectionY(0);
-    System.out.println(ship.getDirectionX());
   }
   if(key== 'w' || key== 'W')
   {
