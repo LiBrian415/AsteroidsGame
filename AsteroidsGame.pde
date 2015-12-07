@@ -27,6 +27,7 @@ public void draw()
     List.get(i).show();
     List.get(i).move();
   }
+  let.show();
   ship.move();
   ship.show();
   for(int i=0; i<List.size();i++)
@@ -59,6 +60,34 @@ public void keyPressed()
   {
     ship.accelerate(-.2);
   }
+}
+class Bullet extends Floater
+{
+  private double dRadians;
+  public Bullet(SpaceShip ship)
+  {
+    myCenterX = 300;
+    myCenterY = 300;
+    myPointDirection = 0;
+    dRadians =myPointDirection*(Math.PI/180);
+    myDirectionX = 5 * Math.cos(dRadians) + ship.getDirectionX();
+    myDirectionX = 5 * Math.cos(dRadians) + ship.getDirectionY();
+  }
+  public void setX(int x) {myCenterX=(double)x;}
+  public int getX() {return (int)myCenterX;}   
+  public void setY(int y) {myCenterY=(double)y;}   
+  public int getY() {return (int)myCenterY;}
+  public void setDirectionX(double x) {myDirectionX=x;}
+  public double getDirectionX() {return myDirectionX;}    
+  public void setDirectionY(double y) {myDirectionY=y;}
+  public double getDirectionY() {return myDirectionY;}
+  public void setPointDirection(int degrees) {myPointDirection=degrees;}
+  public double getPointDirection() {return myPointDirection;}
+      public void show()
+    {
+      fill(255,255,255);
+      ellipse((float)myCenterX,(float)myCenterY,25,25);
+    }
 }
 class SpaceShip extends Floater  
 {   
